@@ -26,12 +26,86 @@ Recommended:
 
 * Terminal basic knowladge
 
+# What will you learn from this tutorial
+
+After this tutorial you will be able to create and install blog website on you hosting account. This is easy and fast way to create web content with minimum technical skills.
 
 # Step 1: Python environment setup
 
+Let's create root folder for our project.
+
+`mkdir myblog`
+
+`cd myblog`
+
+Now we need virtuale environment. I'm using `virtualenv` for this:
+
+`virtualenv -p python3 .venv`
+
+> if `virtualenv` command is not found then you must install it by: `sudo apt install python3-pip` and then `sudo pip3 install virtualenv`
+
+That's it! All preparation is completed. Now we can install Pelican and start using it to create blog!
+
 # Step 2: Installing Pelican
 
+To actually use virtual environemt created in previous step you must activate it by this command:
+
+`. .venv/bin/activate`
+
+After that you should see some kind off indicator that virtualenv is active in your shell prompt (may be different for different shells)
+
+Inside activated venv let's install Pelican:
+
+`pip install "pelican[markdown]"`
+
+You can check if Pelican was installed:
+
+`pelican --version`
+
 # Step 3: Using Pelican's quickstart
+
+Pelican is ready to use. It has build-in quickstart command to speed up setup process. Let's use it, run:
+
+`pelican-quickstart`
+
+There will be few steps that are a basic configuration for your blog. Remember that all of settings below can be changed later on in `pelicanconf.py` file. Let's discuss them step by step:
+
+* `> Where do you want to create your new web site? [.]` - It is a relative path to the content folder. I recommend leave it as default. Just hit ENTER.
+
+* `> What will be the title of this web site?` - Set title for your Blog
+
+* `> Who will be the author of this web site?` - Can be a full name or nickname
+
+* `> What will be the default language of this web site? [en]` - Set correct language. ENTER to leave default `en`
+
+* `> Do you want to specify a URL prefix? e.g., https://example.com   (Y/n)` - If you don't know the http address for your blog yet then skip this setting
+
+* `> What is your URL prefix? (see above example; no trailing slash)` - shows only if (Y) was aswered in previous question, put your blog http address eg.: https://example.com
+
+* `> Do you want to enable article pagination? (Y/n)`
+
+* `> How many articles per page do you want? [10]`
+
+* `> What is your time zone? [Europe/Paris]`
+
+* `> Do you want to generate a tasks.py/Makefile to automate generation and  publishing? (Y/n)`
+
+* `> Do you want to upload your website using FTP? (y/N)` - skip ENTER
+
+* `> Do you want to upload your website using SSH? (y/N)` - skip ENTER
+
+* `> Do you want to upload your website using Dropbox? (y/N)` - skip ENTER
+
+* `> Do you want to upload your website using S3? (y/N)` - y
+
+* `> What is the name of your S3 bucket? [my_s3_bucket]` - set name of S3 bucket for your blog (can be created later)
+
+* `> Do you want to upload your website using Rackspace Cloud Files? (y/N)` - skip ENTER
+
+* `> Do you want to upload your website using GitHub Pages? (y/N)` - y
+
+* `> Is this your personal page (username.github.io)? (y/N)` - skip ENTER
+
 
 # Step 4: CLI - how to use Pelican's commands
 
@@ -41,4 +115,4 @@ Recommended:
 
 # Step 7: Adding custom CSS style
 
-# Step 8: Deploying site
+# Step 8: Deploying site (GitHub Pages / S3)
