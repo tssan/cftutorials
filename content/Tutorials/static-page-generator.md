@@ -119,4 +119,8 @@ Byou must activate it by this command:
 
 # Step 7: Adding custom CSS style
 
-# Step 8: Deploying site (GitHub Pages / S3)
+# Step 8: Deploying site
+
+# Step 8 (A): Using GitHub Pages
+
+# Step 8 (B): Using S3
