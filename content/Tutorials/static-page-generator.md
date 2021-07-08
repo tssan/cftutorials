@@ -109,6 +109,10 @@ There will be few steps that are a basic configuration for your blog. Remember t
 
 # Step 4: CLI - how to use Pelican's commands
 
+Byou must activate it by this command:
+
+`. .venv/bin/activate`
+
 # Step 5: Managing content - adding first blog entry
 
 # Step 6: Changing Theme

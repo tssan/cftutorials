@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <meta name="generator" content="Pelican" />
+        <title>cftutorials.tech - blog</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">cftutorials.tech</a></h1>
+                <nav><ul>
+                    <li><a href="/category/tutorials.html">Tutorials</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/how-to-create-website-using-pelican.html">How to create website using Pelican</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2021-06-28T10:20:00+02:00">
+                Published: Mon 28 June 2021
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/admin.html">admin</a>
+        </address>
+<p>In <a href="/category/tutorials.html">Tutorials</a>.</p>
+<p>tags: <a href="/tag/tutorial.html">tutorial</a> <a href="/tag/pelican.html">pelican</a> <a href="/tag/blog.html">blog</a> </p>
+</footer><!-- /.post-info --><h1>Prerequisites</h1>
+<p>Pelican is a static site generator created in Python programming language. So the main requirement is Python language. For this tutorial I'm using Linux based operating system that have Python already installed. Some basic knowledge of how to use terminal will help you but even if you are new to that I will try to write down every command that will be required to complete this tutorial.</p>
+<blockquote>
+<p>For Windows users I recommend creating virtual machine using virtualbox or WSL (Windows Subsystem for Linux in Windows 10).</p>
+</blockquote>
+<p>After Pelican is installed user can jump right into writting articles and other content. For that any text editor will suffice. I'm using Sublime Text editor.</p>
+<p>Customazing blog appearance require knowledge abut <strong>HTML</strong> and <strong>CSS</strong>. Pelican has build in templates system that can be also used to change blog layout and styles. There are ready to use themes for Pelican. (link)</p>
+<p>To sum up requirements for this tutorial are:</p>
+<ul>
+<li>Linux based OS, Python3 (optionally on Windows: WSL or Virtualbox)</li>
+<li>Text editor</li>
+<li>Hsting space for your blog files</li>
+<li>Domain</li>
+</ul>
+<p>Recommended:</p>
+<ul>
+<li>Terminal basic knowladge</li>
+</ul>
+<h1>What will you learn from this tutorial</h1>
+<p>After this tutorial you will be able to create and install blog website on you hosting account. This is easy and fast way to create web content with minimum technical skills.</p>
+<h1>Step 1: Python environment setup</h1>
+<p>Let's create root folder for our project.</p>
+<p><code>mkdir myblog</code></p>
+<p><code>cd myblog</code></p>
+<p>Now we need virtuale environment. I'm using <code>virtualenv</code> for this:</p>
+<p><code>virtualenv -p python3 .venv</code></p>
+<blockquote>
+<p>if <code>virtualenv</code> command is not found then you must install it by: <code>sudo apt install python3-pip</code> and then <code>sudo pip3 install virtualenv</code></p>
+</blockquote>
+<p>That's it! All preparation is completed. Now we can install Pelican and start using it to create blog!</p>
+<h1>Step 2: Installing Pelican</h1>
+<p>To actually use virtual environemt created in previous step you must activate it by this command:</p>
+<p><code>. .venv/bin/activate</code></p>
+<p>After that you should see some kind off indicator that virtualenv is active in your shell prompt (may be different for different shells)</p>
+<p>Inside activated venv let's install Pelican:</p>
+<p><code>pip install "pelican[markdown]"</code></p>
+<p>You can check if Pelican was installed:</p>
+<p><code>pelican --version</code></p>
+<h1>Step 3: Using Pelican's quickstart</h1>
+<p>Pelican is ready to use. It has build-in quickstart command to speed up setup process. Let's use it, run:</p>
+<p><code>pelican-quickstart</code></p>
+<p>There will be few steps that are a basic configuration for your blog. Remember that all of settings below can be changed later on in <code>pelicanconf.py</code> file. Let's discuss them step by step:</p>
+<ul>
+<li>
+<p><code>&gt; Where do you want to create your new web site? [.]</code> - It is a relative path to the content folder. I recommend leave it as default. Just hit ENTER.</p>
+</li>
+<li>
+<p><code>&gt; What will be the title of this web site?</code> - Set title for your Blog</p>
+</li>
+<li>
+<p><code>&gt; Who will be the author of this web site?</code> - Can be a full name or nickname</p>
+</li>
+<li>
+<p><code>&gt; What will be the default language of this web site? [en]</code> - Set correct language. ENTER to leave default <code>en</code></p>
+</li>
+<li>
+<p><code>&gt; Do you want to specify a URL prefix? e.g., https://example.com   (Y/n)</code> - If you don't know the http address for your blog yet then skip this setting</p>
+</li>
+<li>
+<p><code>&gt; What is your URL prefix? (see above example; no trailing slash)</code> - shows only if (Y) was aswered in previous question, put your blog http address eg.: https://example.com</p>
+</li>
+<li>
+<p><code>&gt; Do you want to enable article pagination? (Y/n)</code></p>
+</li>
+<li>
+<p><code>&gt; How many articles per page do you want? [10]</code></p>
+</li>
+<li>
+<p><code>&gt; What is your time zone? [Europe/Paris]</code></p>
+</li>
+<li>
+<p><code>&gt; Do you want to generate a tasks.py/Makefile to automate generation and  publishing? (Y/n)</code></p>
+</li>
+<li>
+<p><code>&gt; Do you want to upload your website using FTP? (y/N)</code> - skip ENTER</p>
+</li>
+<li>
+<p><code>&gt; Do you want to upload your website using SSH? (y/N)</code> - skip ENTER</p>
+</li>
+<li>
+<p><code>&gt; Do you want to upload your website using Dropbox? (y/N)</code> - skip ENTER</p>
+</li>
+<li>
+<p><code>&gt; Do you want to upload your website using S3? (y/N)</code> - y</p>
+</li>
+<li>
+<p><code>&gt; What is the name of your S3 bucket? [my_s3_bucket]</code> - set name of S3 bucket for your blog (can be created later)</p>
+</li>
+<li>
+<p><code>&gt; Do you want to upload your website using Rackspace Cloud Files? (y/N)</code> - skip ENTER</p>
+</li>
+<li>
+<p><code>&gt; Do you want to upload your website using GitHub Pages? (y/N)</code> - y</p>
+</li>
+<li>
+<p><code>&gt; Is this your personal page (username.github.io)? (y/N)</code> - skip ENTER</p>
+</li>
+</ul>
+<h1>Step 4: CLI - how to use Pelican's commands</h1>
+<p>Byou must activate it by this command:</p>
+<p><code>. .venv/bin/activate</code></p>
+<h1>Step 5: Managing content - adding first blog entry</h1>
+<h1>Step 6: Changing Theme</h1>
+<h1>Step 7: Adding custom CSS style</h1>
+<h1>Step 8: Deploying site (GitHub Pages / S3)</h1>                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://getpelican.com/">Pelican</a></li>
+                            <li><a href="https://www.python.org/">Python.org</a></li>
+                            <li><a href="https://palletsprojects.com/p/jinja/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="https://getpelican.com/">Pelican</a>, which takes great advantage of <a href="https://www.python.org/">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="https://www.smashingmagazine.com/2009/08/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
