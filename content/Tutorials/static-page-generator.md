@@ -109,11 +109,47 @@ There will be few steps that are a basic configuration for your blog. Remember t
 
 # Step 4: CLI - how to use Pelican's commands
 
-Byou must activate it by this command:
+All commands requires a virtualenv to be activated:
 
 `. .venv/bin/activate`
 
+Now there is a `pelican` command ready to use. Before you start anything I encourage you to check all available options by typing `pelican --help`.
+
+There are 2 moste usefull commands:
+
+`pelican content` - this will generate blog website and put it in `output` folder
+
+and
+
+`pelican --listen` - that will start up development server and host generated site that you can check in your browser under `http://127.0.0.1:8000` address
+
+
+> NOTE: Quickstart generates also Makefile that provides usefull commands like `make devserver` that starts development server that will automatically rebuild after you change any content file.
+
+Great! Now we can actually wirte first article ;)
+
+
 # Step 5: Managing content - adding first blog entry
+
+To add new content you just need to create files inside `content` folder.
+
+`touch content/my-first-article.md`
+
+I'm choosing `Markdown` format. It is also possible to use `html` files out of the box. To use other formats check [pelican-plugins](https://github.com/getpelican/pelican-plugins).
+
+The sample article file can looks like this:
+
+```markdown
+Title: My first article
+Date: 2021-07-10 11:00
+Category: News
+
+# My header
+
+Sit et magna dolore id consectetur qui sed cillum magna est incididunt veniam laborum.
+```
+
+After file is saved you need to use `pelican generate` command to make changes i `output` folder. Refresh your page and check your first article!
 
 # Step 6: Changing Theme
 
