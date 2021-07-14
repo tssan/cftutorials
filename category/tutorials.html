@@ -11,6 +11,7 @@
         <header id="banner" class="body">
                 <h1><a href="/">cftutorials.tech</a></h1>
                 <nav><ul>
+                    <li><a href="/category/news.html">News</a></li>
                     <li class="active"><a href="/category/tutorials.html">Tutorials</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
@@ -127,12 +128,37 @@
 </li>
 </ul>
 <h1>Step 4: CLI - how to use Pelican's commands</h1>
-<p>Byou must activate it by this command:</p>
+<p>All commands requires a virtualenv to be activated:</p>
 <p><code>. .venv/bin/activate</code></p>
+<p>Now there is a <code>pelican</code> command ready to use. Before you start anything I encourage you to check all available options by typing <code>pelican --help</code>.</p>
+<p>There are 2 moste usefull commands:</p>
+<p><code>pelican content</code> - this will generate blog website and put it in <code>output</code> folder</p>
+<p>and</p>
+<p><code>pelican --listen</code> - that will start up development server and host generated site that you can check in your browser under <code>http://127.0.0.1:8000</code> address</p>
+<blockquote>
+<p>NOTE: Quickstart generates also Makefile that provides usefull commands like <code>make devserver</code> that starts development server that will automatically rebuild after you change any content file.</p>
+</blockquote>
+<p>Great! Now we can actually wirte first article ;)</p>
 <h1>Step 5: Managing content - adding first blog entry</h1>
+<p>To add new content you just need to create files inside <code>content</code> folder.</p>
+<p><code>touch content/my-first-article.md</code></p>
+<p>I'm choosing <code>Markdown</code> format. It is also possible to use <code>html</code> files out of the box. To use other formats check <a href="https://github.com/getpelican/pelican-plugins">pelican-plugins</a>.</p>
+<p>The sample article file can looks like this:</p>
+<div class="highlight"><pre><span></span><code>Title: My first article
+Date: 2021-07-10 11:00
+Category: News
+
+<span class="gh"># My header</span>
+
+Sit et magna dolore id consectetur qui sed cillum magna est incididunt veniam laborum.
+</code></pre></div>
+
+<p>After file is saved you need to use <code>pelican generate</code> command to make changes i <code>output</code> folder. Refresh your page and check your first article!</p>
 <h1>Step 6: Changing Theme</h1>
 <h1>Step 7: Adding custom CSS style</h1>
-<h1>Step 8: Deploying site (GitHub Pages / S3)</h1>                </article>
+<h1>Step 8: Deploying site</h1>
+<h1>Step 8 (A): Using GitHub Pages</h1>
+<h1>Step 8 (B): Using S3</h1>                </article>
             </aside><!-- /#featured -->
         <section id="extras" class="body">
                 <div class="blogroll">
