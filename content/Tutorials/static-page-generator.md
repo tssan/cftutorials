@@ -149,9 +149,11 @@ Category: News
 Sit et magna dolore id consectetur qui sed cillum magna est incididunt veniam laborum.
 ```
 
-After file is saved you need to use `pelican generate` command to make changes i `output` folder. Refresh your page and check your first article!
+After file is saved you need to use `pelican generate` command to make changes in `output` folder. Refresh your page and check your first article!
 
 # Step 6: Changing Theme
+
+
 
 # Step 7: Adding custom CSS style
 
