@@ -9,7 +9,7 @@ CONFFILE=$(BASEDIR)/pelicanconf.py
 PUBLISHCONF=$(BASEDIR)/publishconf.py
 
 S3_BUCKET=cftutorials.tech
-
+GITHUB_PAGES_BRANCH=gh-pages
 
 DEBUG ?= 0
 ifeq ($(DEBUG), 1)
@@ -74,5 +74,8 @@ publish:
 s3_upload: publish
 	aws s3 sync "$(OUTPUTDIR)"/ s3://$(S3_BUCKET) --profile hirol --acl public-read --delete
 
+github: publish
+	ghp-import -m "Generate Pelican site" -b $(GITHUB_PAGES_BRANCH) "$(OUTPUTDIR)"
+	git push origin $(GITHUB_PAGES_BRANCH)
 
 .PHONY: html help clean regenerate serve serve-global devserver publish s3_upload

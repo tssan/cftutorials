@@ -2,8 +2,9 @@ Title: How to create website using Pelican
 Date: 2021-06-28 10:20
 Category: Tutorials
 Tags: tutorial, pelican, blog
+Author: tssan
 
-# Prerequisites
+## Prerequisites
 
 Pelican is a static site generator created in Python programming language. So the main requirement is Python language. For this tutorial I'm using Linux based operating system that have Python already installed. Some basic knowledge of how to use terminal will help you but even if you are new to that I will try to write down every command that will be required to complete this tutorial.
 
@@ -26,19 +27,17 @@ Recommended:
 
 * Terminal basic knowladge
 
-# What will you learn from this tutorial
+## What will you learn from this tutorial
 
 After this tutorial you will be able to create and install blog website on you hosting account. This is easy and fast way to create web content with minimum technical skills.
 
-# Step 1: Python environment setup
+## Step 1: Python environment setup
 
-Let's create root folder for our project.
+Let's create root folder for our project and then inside set up virtual environment:
 
 `mkdir myblog`
 
 `cd myblog`
-
-Now we need virtuale environment. I'm using `virtualenv` for this:
 
 `virtualenv -p python3 .venv`
 
@@ -46,7 +45,7 @@ Now we need virtuale environment. I'm using `virtualenv` for this:
 
 That's it! All preparation is completed. Now we can install Pelican and start using it to create blog!
 
-# Step 2: Installing Pelican
+## Step 2: Installing Pelican
 
 To actually use virtual environemt created in previous step you must activate it by this command:
 
@@ -62,7 +61,7 @@ You can check if Pelican was installed:
 
 `pelican --version`
 
-# Step 3: Using Pelican's quickstart
+## Step 3: Using Pelican's quickstart
 
 Pelican is ready to use. It has build-in quickstart command to speed up setup process. Let's use it, run:
 
@@ -96,7 +95,9 @@ There will be few steps that are a basic configuration for your blog. Remember t
 
 * `> Do you want to upload your website using Dropbox? (y/N)` - skip ENTER
 
-* `> Do you want to upload your website using S3? (y/N)` - y
+* `> Do you want to upload your website using S3? (y/N)` - skip ENTER
+
+If you choose to use S3 then next step will be to set bucket name:
 
 * `> What is the name of your S3 bucket? [my_s3_bucket]` - set name of S3 bucket for your blog (can be created later)
 
@@ -107,7 +108,7 @@ There will be few steps that are a basic configuration for your blog. Remember t
 * `> Is this your personal page (username.github.io)? (y/N)` - skip ENTER
 
 
-# Step 4: CLI - how to use Pelican's commands
+## Step 4: CLI - how to use Pelican's commands
 
 All commands requires a virtualenv to be activated:
 
@@ -115,7 +116,7 @@ All commands requires a virtualenv to be activated:
 
 Now there is a `pelican` command ready to use. Before you start anything I encourage you to check all available options by typing `pelican --help`.
 
-There are 2 moste usefull commands:
+There are 2 most usefull commands you should know:
 
 `pelican content` - this will generate blog website and put it in `output` folder
 
@@ -126,16 +127,18 @@ and
 
 > NOTE: Quickstart generates also Makefile that provides usefull commands like `make devserver` that starts development server that will automatically rebuild after you change any content file.
 
+> NOTE: Pelican can also handle publishing your work but it will be covered later in Step 8
+
 Great! Now we can actually wirte first article ;)
 
 
-# Step 5: Managing content - adding first blog entry
+## Step 5: Managing content - adding first blog entry
 
 To add new content you just need to create files inside `content` folder.
 
 `touch content/my-first-article.md`
 
-I'm choosing `Markdown` format. It is also possible to use `html` files out of the box. To use other formats check [pelican-plugins](https://github.com/getpelican/pelican-plugins).
+I'm choosing `Markdown` format. It is also possible to use `html` files out of the box. To use other formats check [pelican-plugins](https://github.com/getpelican/pelican-plugins){:target="_blank"}.
 
 The sample article file can looks like this:
 
@@ -149,16 +152,50 @@ Category: News
 Sit et magna dolore id consectetur qui sed cillum magna est incididunt veniam laborum.
 ```
 
+Couple of things about structure of an article, in official documentation it is called metadata.
+
+* Minimal data must be provided in the header of each file. These are: `Title` and `Date`.
+* Default `Author` is set in `pelicanconf.py` but you can override it in each document by adding `Author: Your Name` to the header.
+* Other useful metadata headers you may choose to use: `Tags`, `Slug`, `Author`, `Summary`. More in docs: [File metadata](https://docs.getpelican.com/en/stable/content.html#file-metadata){:target="_blank"}.
+
 After file is saved you need to use `pelican generate` command to make changes in `output` folder. Refresh your page and check your first article!
 
-# Step 6: Changing Theme
+OR
+
+If you are using `make devserver` then it is automatically generated - just refresh browser.
+
+## Step 6: Changing Theme
+
+Pelican provides simple build-in theme that you can start with but to add some presonal touch to your blog you probably want to use some other theme that you like more.
+
+To check all already installed themes run `pelican-themes -l`
+
+[Pelican themes website](http://pelicanthemes.com/){:target="_blank"} is a place where you can find gallery of ready to use themes.
+
+After you pick favourite one and download it to your hard drive you can install it using this command:
+
+`pelican-themes -vi /path/to/downloaded/theme`
+
+This command will copy theme files into your virtual enviroment. If you rerun `pelican-themes -l` new theme name should appear on the list.
+
+To actually use installed theme set it in `pelicanconf.py` adding line:
+
+`THEME = 'name_of_choosen_theme'`
+
+That's it! Re-generate site and check how it looks!
 
 
+## Step 7: Customizing your blog
 
-# Step 7: Adding custom CSS style
+Tweaking theme by editting styles or templates is an advanced topic. No matter what you wish to change it probably can be done somehow the 2 main ways to modify your blog is to create own theme or use plugin.
 
-# Step 8: Deploying site
+* custom theme - if none of found on the internet theme don't match your expectation then you probably end with creating your own custom theme or changing some other "close match", in that case check documentation about [creating Pelican's theme](https://docs.getpelican.com/en/stable/themes.html#){:target="_blank"}
 
-# Step 8 (A): Using GitHub Pages
+* plugins - maybe you need a specyfic type of article or want to use other format than `html` and `markdown`, check available plugins on [GitHub](https://github.com/pelican-plugins){:target="_blank"}
 
-# Step 8 (B): Using S3
+
+## Step 8: Deploying site
+
+## Step 8 (A): Using GitHub Pages
+
+## Step 8 (B): Using S3

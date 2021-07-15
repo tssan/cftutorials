@@ -103,7 +103,7 @@
         <i class="icon-calendar"></i>Mon 28 June 2021
 </abbr>
 <span class="label">By</span>
-<a href="/author/admin.html"><i class="icon-user"></i>admin</a>
+<a href="/author/tssan.html"><i class="icon-user"></i>tssan</a>
 <span class="label">Category</span>
 <a href="/category/tutorials.html"><i class="icon-folder-open"></i>Tutorials</a>.
 
@@ -113,7 +113,7 @@
 	<a href="/tag/pelican.html"><i class="icon-tag"></i>pelican</a>
 	<a href="/tag/blog.html"><i class="icon-tag"></i>blog</a>
 </footer><!-- /.post-info -->                </div>
-                <h1>Prerequisites</h1>
+                <h2>Prerequisites</h2>
 <p>Pelican is a static site generator created in Python programming language. So the main requirement is Python language. For this tutorial I'm using Linux based operating system that have Python already installed. Some basic knowledge of how to use terminal will help you but even if you are new to that I will try to write down every command that will be required to complete this tutorial.</p>
 <blockquote>
 <p>For Windows users I recommend creating virtual machine using virtualbox or WSL (Windows Subsystem for Linux in Windows 10).</p>
@@ -131,19 +131,18 @@
 <ul>
 <li>Terminal basic knowladge</li>
 </ul>
-<h1>What will you learn from this tutorial</h1>
+<h2>What will you learn from this tutorial</h2>
 <p>After this tutorial you will be able to create and install blog website on you hosting account. This is easy and fast way to create web content with minimum technical skills.</p>
-<h1>Step 1: Python environment setup</h1>
-<p>Let's create root folder for our project.</p>
+<h2>Step 1: Python environment setup</h2>
+<p>Let's create root folder for our project and then inside set up virtual environment:</p>
 <p><code>mkdir myblog</code></p>
 <p><code>cd myblog</code></p>
-<p>Now we need virtuale environment. I'm using <code>virtualenv</code> for this:</p>
 <p><code>virtualenv -p python3 .venv</code></p>
 <blockquote>
 <p>if <code>virtualenv</code> command is not found then you must install it by: <code>sudo apt install python3-pip</code> and then <code>sudo pip3 install virtualenv</code></p>
 </blockquote>
 <p>That's it! All preparation is completed. Now we can install Pelican and start using it to create blog!</p>
-<h1>Step 2: Installing Pelican</h1>
+<h2>Step 2: Installing Pelican</h2>
 <p>To actually use virtual environemt created in previous step you must activate it by this command:</p>
 <p><code>. .venv/bin/activate</code></p>
 <p>After that you should see some kind off indicator that virtualenv is active in your shell prompt (may be different for different shells)</p>
@@ -151,7 +150,7 @@
 <p><code>pip install "pelican[markdown]"</code></p>
 <p>You can check if Pelican was installed:</p>
 <p><code>pelican --version</code></p>
-<h1>Step 3: Using Pelican's quickstart</h1>
+<h2>Step 3: Using Pelican's quickstart</h2>
 <p>Pelican is ready to use. It has build-in quickstart command to speed up setup process. Let's use it, run:</p>
 <p><code>pelican-quickstart</code></p>
 <p>There will be few steps that are a basic configuration for your blog. Remember that all of settings below can be changed later on in <code>pelicanconf.py</code> file. Let's discuss them step by step:</p>
@@ -196,8 +195,11 @@
 <p><code>&gt; Do you want to upload your website using Dropbox? (y/N)</code> - skip ENTER</p>
 </li>
 <li>
-<p><code>&gt; Do you want to upload your website using S3? (y/N)</code> - y</p>
+<p><code>&gt; Do you want to upload your website using S3? (y/N)</code> - skip ENTER</p>
 </li>
+</ul>
+<p>If you choose to use S3 then next step will be to set bucket name:</p>
+<ul>
 <li>
 <p><code>&gt; What is the name of your S3 bucket? [my_s3_bucket]</code> - set name of S3 bucket for your blog (can be created later)</p>
 </li>
@@ -211,22 +213,23 @@
 <p><code>&gt; Is this your personal page (username.github.io)? (y/N)</code> - skip ENTER</p>
 </li>
 </ul>
-<h1>Step 4: CLI - how to use Pelican's commands</h1>
+<h2>Step 4: CLI - how to use Pelican's commands</h2>
 <p>All commands requires a virtualenv to be activated:</p>
 <p><code>. .venv/bin/activate</code></p>
 <p>Now there is a <code>pelican</code> command ready to use. Before you start anything I encourage you to check all available options by typing <code>pelican --help</code>.</p>
-<p>There are 2 moste usefull commands:</p>
+<p>There are 2 most usefull commands you should know:</p>
 <p><code>pelican content</code> - this will generate blog website and put it in <code>output</code> folder</p>
 <p>and</p>
 <p><code>pelican --listen</code> - that will start up development server and host generated site that you can check in your browser under <code>http://127.0.0.1:8000</code> address</p>
 <blockquote>
 <p>NOTE: Quickstart generates also Makefile that provides usefull commands like <code>make devserver</code> that starts development server that will automatically rebuild after you change any content file.</p>
+<p>NOTE: Pelican can also handle publishing your work but it will be covered later in Step 8</p>
 </blockquote>
 <p>Great! Now we can actually wirte first article ;)</p>
-<h1>Step 5: Managing content - adding first blog entry</h1>
+<h2>Step 5: Managing content - adding first blog entry</h2>
 <p>To add new content you just need to create files inside <code>content</code> folder.</p>
 <p><code>touch content/my-first-article.md</code></p>
-<p>I'm choosing <code>Markdown</code> format. It is also possible to use <code>html</code> files out of the box. To use other formats check <a href="https://github.com/getpelican/pelican-plugins">pelican-plugins</a>.</p>
+<p>I'm choosing <code>Markdown</code> format. It is also possible to use <code>html</code> files out of the box. To use other formats check <a href="https://github.com/getpelican/pelican-plugins" target="_blank">pelican-plugins</a>.</p>
 <p>The sample article file can looks like this:</p>
 <div class="highlight"><pre><span></span><code>Title: My first article
 Date: 2021-07-10 11:00
@@ -237,12 +240,38 @@ Category: News
 Sit et magna dolore id consectetur qui sed cillum magna est incididunt veniam laborum.
 </code></pre></div>
 
+<p>Couple of things about structure of an article, in official documentation it is called metadata.</p>
+<ul>
+<li>Minimal data must be provided in the header of each file. These are: <code>Title</code> and <code>Date</code>.</li>
+<li>Default <code>Author</code> is set in <code>pelicanconf.py</code> but you can override it in each document by adding <code>Author: Your Name</code> to the header.</li>
+<li>Other useful metadata headers you may choose to use: <code>Tags</code>, <code>Slug</code>, <code>Author</code>, <code>Summary</code>. More in docs: <a href="https://docs.getpelican.com/en/stable/content.html#file-metadata" target="_blank">File metadata</a>.</li>
+</ul>
 <p>After file is saved you need to use <code>pelican generate</code> command to make changes in <code>output</code> folder. Refresh your page and check your first article!</p>
-<h1>Step 6: Changing Theme</h1>
-<h1>Step 7: Adding custom CSS style</h1>
-<h1>Step 8: Deploying site</h1>
-<h1>Step 8 (A): Using GitHub Pages</h1>
-<h1>Step 8 (B): Using S3</h1>
+<p>OR</p>
+<p>If you are using <code>make devserver</code> then it is automatically generated - just refresh browser.</p>
+<h2>Step 6: Changing Theme</h2>
+<p>Pelican provides simple build-in theme that you can start with but to add some presonal touch to your blog you probably want to use some other theme that you like more.</p>
+<p>To check all already installed themes run <code>pelican-themes -l</code></p>
+<p><a href="http://pelicanthemes.com/" target="_blank">Pelican themes website</a> is a place where you can find gallery of ready to use themes.</p>
+<p>After you pick favourite one and download it to your hard drive you can install it using this command:</p>
+<p><code>pelican-themes -vi /path/to/downloaded/theme</code></p>
+<p>This command will copy theme files into your virtual enviroment. If you rerun <code>pelican-themes -l</code> new theme name should appear on the list.</p>
+<p>To actually use installed theme set it in <code>pelicanconf.py</code> adding line:</p>
+<p><code>THEME = 'name_of_choosen_theme'</code></p>
+<p>That's it! Re-generate site and check how it looks!</p>
+<h2>Step 7: Customizing your blog</h2>
+<p>Tweaking theme by editting styles or templates is an advanced topic. No matter what you wish to change it probably can be done somehow the 2 main ways to modify your blog is to create own theme or use plugin.</p>
+<ul>
+<li>
+<p>custom theme - if none of found on the internet theme don't match your expectation then you probably end with creating your own custom theme or changing some other "close match", in that case check documentation about <a href="https://docs.getpelican.com/en/stable/themes.html#" target="_blank">creating Pelican's theme</a></p>
+</li>
+<li>
+<p>plugins - maybe you need a specyfic type of article or want to use other format than <code>html</code> and <code>markdown</code>, check available plugins on <a href="https://github.com/pelican-plugins" target="_blank">GitHub</a></p>
+</li>
+</ul>
+<h2>Step 8: Deploying site</h2>
+<h2>Step 8 (A): Using GitHub Pages</h2>
+<h2>Step 8 (B): Using S3</h2>
                 </div><!-- /.entry-content -->
         </article>
 </section>
