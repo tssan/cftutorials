@@ -216,7 +216,6 @@
 <h2>Step 4: CLI - how to use Pelican's commands</h2>
 <p>All commands requires a virtualenv to be activated:</p>
 <p><code>. .venv/bin/activate</code></p>
-<p>Now there is a <code>pelican</code> command ready to use. Before you start anything I encourage you to check all available options by typing <code>pelican --help</code>.</p>
 <p>There are 2 most usefull commands you should know:</p>
 <p><code>pelican content</code> - this will generate blog website and put it in <code>output</code> folder</p>
 <p>and</p>
@@ -225,6 +224,8 @@
 <p>NOTE: Quickstart generates also Makefile that provides usefull commands like <code>make devserver</code> that starts development server that will automatically rebuild after you change any content file.</p>
 <p>NOTE: Pelican can also handle publishing your work but it will be covered later in Step 8</p>
 </blockquote>
+<p>To close a running server hit Ctr+C.</p>
+<p>Now there is a <code>pelican</code> command ready to use. Before you start anything I encourage you to check all available options by typing <code>pelican --help</code>.</p>
 <p>Great! Now we can actually wirte first article ;)</p>
 <h2>Step 5: Managing content - adding first blog entry</h2>
 <p>To add new content you just need to create files inside <code>content</code> folder.</p>
@@ -252,13 +253,16 @@ Sit et magna dolore id consectetur qui sed cillum magna est incididunt veniam la
 <h2>Step 6: Changing Theme</h2>
 <p>Pelican provides simple build-in theme that you can start with but to add some presonal touch to your blog you probably want to use some other theme that you like more.</p>
 <p>To check all already installed themes run <code>pelican-themes -l</code></p>
-<p><a href="http://pelicanthemes.com/" target="_blank">Pelican themes website</a> is a place where you can find gallery of ready to use themes.</p>
+<p><a href="http://pelicanthemes.com/" target="_blank">Pelican themes website</a> is a place where you can find gallery of ready to use themes. Most of those themes are available on GitHub. You can download zipped file from there.</p>
 <p>After you pick favourite one and download it to your hard drive you can install it using this command:</p>
 <p><code>pelican-themes -vi /path/to/downloaded/theme</code></p>
+<blockquote>
+<p>NOTE: Path must point to the unzipped theme files.</p>
+</blockquote>
 <p>This command will copy theme files into your virtual enviroment. If you rerun <code>pelican-themes -l</code> new theme name should appear on the list.</p>
 <p>To actually use installed theme set it in <code>pelicanconf.py</code> adding line:</p>
 <p><code>THEME = 'name_of_choosen_theme'</code></p>
-<p>That's it! Re-generate site and check how it looks!</p>
+<p>That's it! Re-generate site and check how it looks! (Run commands from Step 4)</p>
 <h2>Step 7: Customizing your blog</h2>
 <p>Tweaking theme by editting styles or templates is an advanced topic. No matter what you wish to change it probably can be done somehow the 2 main ways to modify your blog is to create own theme or use plugin.</p>
 <ul>
