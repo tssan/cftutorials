@@ -8,9 +8,7 @@ Author: tssan
 
 Pelican is a static site generator created in Python programming language. So the main requirement is Python language. For this tutorial I'm using Linux based operating system that have Python already installed. Some basic knowledge of how to use terminal will help you but even if you are new to that I will try to write down every command that will be required to complete this tutorial.
 
-
 > For Windows users I recommend creating virtual machine using virtualbox or WSL (Windows Subsystem for Linux in Windows 10).
-
 
 After Pelican is installed user can jump right into writting articles and other content. For that any text editor will suffice. I'm using Sublime Text editor.
 
@@ -114,8 +112,6 @@ All commands requires a virtualenv to be activated:
 
 `. .venv/bin/activate`
 
-Now there is a `pelican` command ready to use. Before you start anything I encourage you to check all available options by typing `pelican --help`.
-
 There are 2 most usefull commands you should know:
 
 `pelican content` - this will generate blog website and put it in `output` folder
@@ -124,10 +120,13 @@ and
 
 `pelican --listen` - that will start up development server and host generated site that you can check in your browser under `http://127.0.0.1:8000` address
 
-
 > NOTE: Quickstart generates also Makefile that provides usefull commands like `make devserver` that starts development server that will automatically rebuild after you change any content file.
 
 > NOTE: Pelican can also handle publishing your work but it will be covered later in Step 8
+
+To close a running server hit Ctr+C.
+
+Now there is a `pelican` command ready to use. Before you start anything I encourage you to check all available options by typing `pelican --help`.
 
 Great! Now we can actually wirte first article ;)
 
@@ -170,11 +169,13 @@ Pelican provides simple build-in theme that you can start with but to add some p
 
 To check all already installed themes run `pelican-themes -l`
 
-[Pelican themes website](http://pelicanthemes.com/){:target="_blank"} is a place where you can find gallery of ready to use themes.
+[Pelican themes website](http://pelicanthemes.com/){:target="_blank"} is a place where you can find gallery of ready to use themes. Most of those themes are available on GitHub. You can download zipped file from there.
 
 After you pick favourite one and download it to your hard drive you can install it using this command:
 
 `pelican-themes -vi /path/to/downloaded/theme`
+
+> NOTE: Path must point to the unzipped theme files.
 
 This command will copy theme files into your virtual enviroment. If you rerun `pelican-themes -l` new theme name should appear on the list.
 
@@ -182,7 +183,7 @@ To actually use installed theme set it in `pelicanconf.py` adding line:
 
 `THEME = 'name_of_choosen_theme'`
 
-That's it! Re-generate site and check how it looks!
+That's it! Re-generate site and check how it looks! (Run commands from Step 4)
 
 
 ## Step 7: Customizing your blog
