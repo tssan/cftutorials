@@ -1,5 +1,5 @@
 Title: How to create website using Pelican
-Date: 2021-06-28 10:20
+Date: 2021-07-30 10:20
 Category: Tutorials
 Tags: tutorial, pelican, blog
 Author: tssan
@@ -23,6 +23,7 @@ To sum up requirements for this tutorial are:
 
 Recommended:
 
+* Git basic knowladge - required for **Step 8** when we deploy website
 * Terminal basic knowladge
 
 ## What will you learn from this tutorial
@@ -118,7 +119,9 @@ Easiest way to start is just running: `make devserver`
 
 You should see information that server is started:
 
-`Serving site at: http://127.0.0.1:8000 - Tap CTRL-C to stop`
+```shell
+Serving site at: http://127.0.0.1:8000 - Tap CTRL-C to stop
+```
 
 Open your browser and go to: `http://127.0.0.1:8000`
 
@@ -205,6 +208,45 @@ Tweaking theme by editting styles or templates is an advanced topic. No matter w
 
 ## Step 8: Deploying site
 
-## Step 8 (A): Using GitHub Pages
+Deploying process will be different for every method and hosting solution you choose. I will describe using GitHub Pages.
 
-## Step 8 (B): Using S3
+* First of you must create account on GitHub.
+
+* Then after logging in create new **public** repository for your website.
+
+* Inside `output` folder create `CNAME` file and write inside the name of your domain eg.: `example.com`. This will be required to hook your domain with GitHub Pages.
+
+* Install Git if not installed yet. Depending on your operating system you may use some GUI for this or like me type commands in terminal:
+
+```shell
+git init
+git remote add origin git@github.com:yourusername/repositoryname.git
+git add .
+git commit -m "initial"
+git push -u origin master
+```
+
+> Replace `yourusername` and `repositoryname` with proper values
+
+* Now create branch that will be holding your actual website.
+
+```shell
+git subtree push --prefix test origin gh-pages
+
+```
+
+* Go to repository Settings/Pages. Select branch `gh-pages` and in field **Custom domain** put the name of your domain then press **Save**. Ok. GitHub part is done. If you have any trouble check documentation about [GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site){:target="_blank"}
+
+* Go to your domain provider and set up GitHub's records:
+
+GitHub `A` records you need to use:
+
+```
+185.199.108.153
+185.199.109.153
+185.199.110.153
+185.199.111.153
+
+```
+
+That's all! DNS propagation can take a while. Worst case scenario up to 48 hours but that never happend to me. Usually it takes up to several minutes. More informations about managing custom domain on GitHub [here](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site){:target="_blank"}
