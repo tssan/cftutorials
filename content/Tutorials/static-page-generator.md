@@ -6,13 +6,13 @@ Author: tssan
 
 ## Prerequisites
 
-Pelican is a static site generator created in Python programming language. So the main requirement is Python language. For this tutorial I'm using Linux based operating system that have Python already installed. Some basic knowledge of how to use terminal will help you but even if you are new to that I will try to write down every command that will be required to complete this tutorial.
+Pelican is a static site generator created in Python programming language which is our main requirement. For this tutorial I'm using Debian - Linux based operating system that have Python already installed. Some basic knowledge of how to use terminal will help you but even if you are new to that I will try to write down every command that will be required to complete this tutorial.
 
 > For Windows users I recommend creating virtual machine using virtualbox or WSL (Windows Subsystem for Linux in Windows 10).
 
 After Pelican is installed user can jump right into writting articles and other content. For that any text editor will suffice. I'm using Sublime Text editor.
 
-Customazing blog appearance require knowledge abut **HTML** and **CSS**. Pelican has build in templates system that can be also used to change blog layout and styles. There are ready to use themes for Pelican. (link)
+Customazing blog appearance require knowledge abut **HTML** and **CSS**. Pelican has build in templates system that can be also used to change blog layout and styles. There are ready to use themes for Pelican.
 
 To sum up requirements for this tutorial are:
 
@@ -41,7 +41,7 @@ Let's create root folder for our project and then inside set up virtual environm
 
 > if `virtualenv` command is not found then you must install it by: `sudo apt install python3-pip` and then `sudo pip3 install virtualenv`
 
-That's it! All preparation is completed. Now we can install Pelican and start using it to create blog!
+That's it. Now we can install Pelican and start using it to create blog!
 
 ## Step 2: Installing Pelican
 
@@ -65,7 +65,7 @@ Pelican is ready to use. It has build-in quickstart command to speed up setup pr
 
 `pelican-quickstart`
 
-There will be few steps that are a basic configuration for your blog. Remember that all of settings below can be changed later on in `pelicanconf.py` file. Let's discuss them step by step:
+Quickstart will guide you through few steps providing basic configuration for your blog. Remember that all of settings below can be changed later on in `pelicanconf.py` file. Let's discuss them step by step:
 
 * `> Where do you want to create your new web site? [.]` - It is a relative path to the content folder. I recommend leave it as default. Just hit ENTER.
 
@@ -85,7 +85,7 @@ There will be few steps that are a basic configuration for your blog. Remember t
 
 * `> What is your time zone? [Europe/Paris]`
 
-* `> Do you want to generate a tasks.py/Makefile to automate generation and  publishing? (Y/n)`
+* `> Do you want to generate a tasks.py/Makefile to automate generation and  publishing? (Y/n)` - I recommend choosing `Y` here as it will be helpful later on
 
 * `> Do you want to upload your website using FTP? (y/N)` - skip ENTER
 
@@ -105,14 +105,24 @@ If you choose to use S3 then next step will be to set bucket name:
 
 * `> Is this your personal page (username.github.io)? (y/N)` - skip ENTER
 
+Result of quickstart is a project's folder with minimal setup required to run website. You should see new folders `content` and `output` and also config files `pelicanconf.py` and `publishconf.py`.
+
 
 ## Step 4: CLI - how to use Pelican's commands
 
 All commands requires a virtualenv to be activated:
 
-`. .venv/bin/activate`
+`. .venv/bin/activate` - execute if you didn't run this command in **Step 2**
 
-There are 2 most usefull commands you should know:
+Easiest way to start is just running: `make devserver`
+
+You should see information that server is started:
+
+`Serving site at: http://127.0.0.1:8000 - Tap CTRL-C to stop`
+
+Open your browser and go to: `http://127.0.0.1:8000`
+
+There other 2 most usefull commands you should know:
 
 `pelican content` - this will generate blog website and put it in `output` folder
 
@@ -120,15 +130,15 @@ and
 
 `pelican --listen` - that will start up development server and host generated site that you can check in your browser under `http://127.0.0.1:8000` address
 
-> NOTE: Quickstart generates also Makefile that provides usefull commands like `make devserver` that starts development server that will automatically rebuild after you change any content file.
+> **NOTE**: Pelican can also handle publishing your work but it will be covered later in Step 8
 
-> NOTE: Pelican can also handle publishing your work but it will be covered later in Step 8
+Now there is a `pelican` command ready to use. Before you start anything I encourage you to check all available options by typing:
 
-To close a running server hit Ctr+C.
-
-Now there is a `pelican` command ready to use. Before you start anything I encourage you to check all available options by typing `pelican --help`.
+`pelican --help`.
 
 Great! Now we can actually wirte first article ;)
+
+> **REMEBER**: To close a running server hit Ctr+C.
 
 
 ## Step 5: Managing content - adding first blog entry
@@ -139,6 +149,8 @@ To add new content you just need to create files inside `content` folder.
 
 I'm choosing `Markdown` format. It is also possible to use `html` files out of the box. To use other formats check [pelican-plugins](https://github.com/getpelican/pelican-plugins){:target="_blank"}.
 
+Open article file in your text editor.
+
 The sample article file can looks like this:
 
 ```markdown
@@ -148,20 +160,16 @@ Category: News
 
 # My header
 
-Sit et magna dolore id consectetur qui sed cillum magna est incididunt veniam laborum.
+Lorem ipsum. Sit et magna dolore id consectetur qui sed cillum magna est incididunt veniam laborum.
 ```
 
-Couple of things about structure of an article, in official documentation it is called metadata.
+Couple of things about structure of an article. In official documentation it is called metadata.
 
 * Minimal data must be provided in the header of each file. These are: `Title` and `Date`.
 * Default `Author` is set in `pelicanconf.py` but you can override it in each document by adding `Author: Your Name` to the header.
 * Other useful metadata headers you may choose to use: `Tags`, `Slug`, `Author`, `Summary`. More in docs: [File metadata](https://docs.getpelican.com/en/stable/content.html#file-metadata){:target="_blank"}.
 
-After file is saved you need to use `pelican generate` command to make changes in `output` folder. Refresh your page and check your first article!
-
-OR
-
-If you are using `make devserver` then it is automatically generated - just refresh browser.
+If `make devserver` command is running then just refresh page to see changes in your website otherwise you need to use `pelican generate` command to make changes in `output` folder. Refresh your page and check your first article!
 
 ## Step 6: Changing Theme
 
