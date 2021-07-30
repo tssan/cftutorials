@@ -54,7 +54,7 @@
               <div class="col-lg-12">
                   <div class="header-content">
                       <h1 class="header-title">How to create website using Pelican</h1>
-                      <p class="header-date"> <a href="/author/tssan.html">tssan</a>, Mon 28 June 2021,  <a href="/category/tutorials.html">Tutorials</a></p>
+                      <p class="header-date"> <a href="/author/tssan.html">tssan</a>, Fri 30 July 2021,  <a href="/category/tutorials.html">Tutorials</a></p>
                       <div class="header-underline"></div>
                       <div class="clearfix"></div>
                       <p class="pull-right header-tags">
@@ -89,6 +89,7 @@
 </ul>
 <p>Recommended:</p>
 <ul>
+<li>Git basic knowladge - required for <strong>Step 8</strong> when we deploy website</li>
 <li>Terminal basic knowladge</li>
 </ul>
 <h2>What will you learn from this tutorial</h2>
@@ -179,7 +180,9 @@
 <p><code>. .venv/bin/activate</code> - execute if you didn't run this command in <strong>Step 2</strong></p>
 <p>Easiest way to start is just running: <code>make devserver</code></p>
 <p>You should see information that server is started:</p>
-<p><code>Serving site at: http://127.0.0.1:8000 - Tap CTRL-C to stop</code></p>
+<div class="highlight"><pre><span></span><code>Serving site at: http://127.0.0.1:8000 - Tap CTRL-C to stop
+</code></pre></div>
+
 <p>Open your browser and go to: <code>http://127.0.0.1:8000</code></p>
 <p>There other 2 most usefull commands you should know:</p>
 <p><code>pelican content</code> - this will generate blog website and put it in <code>output</code> folder</p>
@@ -240,8 +243,53 @@ Lorem ipsum. Sit et magna dolore id consectetur qui sed cillum magna est incidid
 </li>
 </ul>
 <h2>Step 8: Deploying site</h2>
-<h2>Step 8 (A): Using GitHub Pages</h2>
-<h2>Step 8 (B): Using S3</h2>
+<p>Deploying process will be different for every method and hosting solution you choose. I will describe using GitHub Pages.</p>
+<ul>
+<li>
+<p>First of you must create account on GitHub.</p>
+</li>
+<li>
+<p>Then after logging in create new <strong>public</strong> repository for your website.</p>
+</li>
+<li>
+<p>Inside <code>output</code> folder create <code>CNAME</code> file and write inside the name of your domain eg.: <code>example.com</code>. This will be required to hook your domain with GitHub Pages.</p>
+</li>
+<li>
+<p>Install Git if not installed yet. Depending on your operating system you may use some GUI for this or like me type commands in terminal:</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>git init
+git remote add origin git@github.com:yourusername/repositoryname.git
+git add .
+git commit -m <span class="s2">&quot;initial&quot;</span>
+git push -u origin master
+</code></pre></div>
+
+<blockquote>
+<p>Replace <code>yourusername</code> and <code>repositoryname</code> with proper values</p>
+</blockquote>
+<ul>
+<li>Now create branch that will be holding your actual website.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>git subtree push --prefix <span class="nb">test</span> origin gh-pages
+</code></pre></div>
+
+<ul>
+<li>
+<p>Go to repository Settings/Pages. Select branch <code>gh-pages</code> and in field <strong>Custom domain</strong> put the name of your domain then press <strong>Save</strong>. Ok. GitHub part is done. If you have any trouble check documentation about <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site" target="_blank">GitHub Pages</a></p>
+</li>
+<li>
+<p>Go to your domain provider and set up GitHub's records:</p>
+</li>
+</ul>
+<p>GitHub <code>A</code> records you need to use:</p>
+<div class="highlight"><pre><span></span><code><span class="mf">185.199.108.153</span>
+<span class="mf">185.199.109.153</span>
+<span class="mf">185.199.110.153</span>
+<span class="mf">185.199.111.153</span>
+</code></pre></div>
+
+<p>That's all! DNS propagation can take a while. Worst case scenario up to 48 hours but that never happend to me. Usually it takes up to several minutes. More informations about managing custom domain on GitHub <a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site" target="_blank">here</a></p>
 
 
         
@@ -258,11 +306,6 @@ Lorem ipsum. Sit et magna dolore id consectetur qui sed cillum magna est incidid
                         </ul>
                     </div>
                     <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
-                        <div class="footer-title"></div>
-                        <ul class="list-unstyled">
-                            <li><a href="#" target="_blank">You can add links in your config file</a></li>
-                            <li><a href="#" target="_blank">Another social link</a></li>
-                        </ul>
                     </div>
                     <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3">
                         <div class="footer-title"></div>
