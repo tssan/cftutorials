@@ -12,9 +12,9 @@ Pelican is a static site generator created in Python programming language which 
 
 After Pelican is installed user can jump right into writting articles and other content. For that any text editor will suffice. I'm using Sublime Text editor.
 
-Customazing blog appearance require knowledge abut **HTML** and **CSS**. Pelican has build in templates system that can be also used to change blog layout and styles. There are ready to use themes for Pelican.
+Customazing blog appearance require knowledge of **HTML** and **CSS**. Pelican has build-in templates system that can be also used to change blog layout and styles. There are ready to use themes for Pelican.
 
-To sum up requirements for this tutorial are:
+To sum up, requirements for this tutorial are:
 
 * Linux based OS, Python3 (optionally on Windows: WSL or Virtualbox)
 * Text editor
@@ -125,7 +125,7 @@ Serving site at: http://127.0.0.1:8000 - Tap CTRL-C to stop
 
 Open your browser and go to: `http://127.0.0.1:8000`
 
-There other 2 most usefull commands you should know:
+These are 2 most usefull commands you should know:
 
 `pelican content` - this will generate blog website and put it in `output` folder
 
@@ -154,7 +154,7 @@ I'm choosing `Markdown` format. It is also possible to use `html` files out of t
 
 Open article file in your text editor.
 
-The sample article file can looks like this:
+The sample article file can look like this:
 
 ```markdown
 Title: My first article
@@ -201,7 +201,7 @@ That's it! Re-generate site and check how it looks! (Run commands from Step 4)
 
 Tweaking theme by editting styles or templates is an advanced topic. No matter what you wish to change it probably can be done somehow the 2 main ways to modify your blog is to create own theme or use plugin.
 
-* custom theme - if none of found on the internet theme don't match your expectation then you probably end with creating your own custom theme or changing some other "close match", in that case check documentation about [creating Pelican's theme](https://docs.getpelican.com/en/stable/themes.html#){:target="_blank"}
+* custom theme - if none of the themes found on the internet match your expectation then you will probably end with creating your own custom theme or changing some other "close match", in that case check documentation about creating Pelican's theme [creating Pelican's theme](https://docs.getpelican.com/en/stable/themes.html#){:target="_blank"}
 
 * plugins - maybe you need a specyfic type of article or want to use other format than `html` and `markdown`, check available plugins on [GitHub](https://github.com/pelican-plugins){:target="_blank"}
 
